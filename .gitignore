@@ -1,0 +1,7 @@
+*.swp
+*.pyc
+*.ipynb
+/.idea
+/*.egg/
+/.cache
+/info
