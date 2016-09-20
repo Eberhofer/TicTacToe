@@ -1,5 +1,6 @@
 # import pyytest
-from TicTacToe.game import Game, tictactoe
+from TicTacToe.game import Game
+import TicTacToe.tictactoe as tictactoe
 import pytest
 
 

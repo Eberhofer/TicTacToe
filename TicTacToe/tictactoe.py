@@ -23,6 +23,10 @@ def check_win(player_state):
     return win
 
 def reduce_winners(current_winners, opponent_state):
+    """
+        Returns the recalculated set of possible winners by pruning the
+        the winners that are blocked by the opponent_state.
+    """
     return [_ for _ in current_winners if _.isdisjoint(opponent_state)]
 
 def winning_combinations(player_state, current_winners):
@@ -36,7 +40,7 @@ def winning_combinations(player_state, current_winners):
     for candidate in current_winners:
         if candidate.isdisjoint(player_state):
             continue
-        for x in candidate - player_state:
-            candlist.append(x)
+        for field_number in candidate - player_state:
+            candlist.append(field_number)
             print(candlist)
     return {_ for _ in candlist if candlist.count(_) > 1}

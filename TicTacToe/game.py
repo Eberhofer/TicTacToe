@@ -2,7 +2,6 @@
     game.py - the Game class
     ------------------------
 """
-import TicTacToe.tictactoe as tictactoe
 from TicTacToe.player import Player
 
 class Game:
@@ -18,12 +17,25 @@ class Game:
 
     @property
     def board_state(self):
-        def set_field(p1, p2, i):
-            return 'X' if i in p1 else 'O' if i in p2 else ' '
+        """
+            Returns the board state as a list of ' ', 'X' and 'O'.
+        """
+        def set_field(p1state, p2state, field_number):
+            """
+                Returns the character for field with field_number based on the
+                states players 1 and 2 (p1state and p2state).
+            """
+            return 'X' if field_number in p1state else \
+                'O' if field_number in p2state else ' '
         return [set_field(self.player1.state, self.player2.state, _)
                 for _ in range(1, 10)]
 
     def move(self, player, field_number):
+        """
+            Defines the move for a player to play field with field_number.
+            There are a few intentional side effects: move updates the opponent's
+            winner. (??? IS THIS A GOOD IDEA? ???)
+        """
         opponent = self.player2 if self.player1 == player else self.player1
         if field_number in opponent.state:
             raise ValueError("Field already occupied by opponent.")
